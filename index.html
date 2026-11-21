@@ -388,5 +388,36 @@ document.addEventListener('click', async (e)=>{
   }
 });
 </script>
+ <!-- GAME KHULTE HI AUTO-ROTATE ON -->
+<script>
+  function autoRotateOn(){
+    // 1. Fullscreen maango
+    try{
+      let el = document.documentElement;
+      if(document.fullscreenEnabled && !document.fullscreenElement){
+        if(el.requestFullscreen) el.requestFullscreen().catch(()=>{});
+      }
+    }catch(e){}
+
+    // 2. Landscape me lock karo - Yahi Auto-Rotate ON hai
+    try{
+      if(screen.orientation && screen.orientation.lock){
+        screen.orientation.lock('landscape').then(()=>{
+          console.log('Auto-Rotate ON ho gaya');
+        }).catch(()=>{});
+      }
+    }catch(e){}
+  }
+
+  // Game khulte hi try karega
+  window.addEventListener('load', function(){
+    setTimeout(autoRotateOn, 500);
+  });
+
+  // Aur jaise hi tu screen pe ek baar touch karega, pakka ON ho jayega
+  document.addEventListener('touchstart', autoRotateOn, {once:true});
+  document.addEventListener('click', autoRotateOn, {once:true});
+</script>
+<!-- KHATAM -->
 </body>
 </html>
