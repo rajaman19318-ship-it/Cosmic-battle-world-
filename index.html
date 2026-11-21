@@ -378,6 +378,15 @@
    dmgNums.forEach(n=>{ let sx=n.x-cam.x, sy=n.y-cam.y; ctx.font='bold 20px Arial'; ctx.textAlign='center'; ctx.strokeStyle='black'; ctx.lineWidth=4; ctx.strokeText('-'+n.dmg, sx, sy); ctx.fillStyle='#FFD700'; ctx.fillText('-'+n.dmg, sx, sy); });
    requestAnimationFrame(loop);
   }
+<script>
+document.addEventListener('click', async (e)=>{
+  if(e.target.textContent.trim().toUpperCase()==='START'){
+    try{
+      await document.documentElement.requestFullscreen();
+      await screen.orientation.lock('landscape');
+    }catch(err){}
+  }
+});
 </script>
 </body>
 </html>
